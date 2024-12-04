@@ -1,0 +1,32 @@
+<div style="margin: 25px 10px 0 10px; display: flex;">
+    <mat-form-field appearance="fill" style="flex: none; width: 300px;">
+      <mat-label>Manufacturer</mat-label>
+      <mat-select [(value)]="selectedManufacturer">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer">
+          {{ manufacturer }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <!-- Clear Button -->
+    <button
+      *ngIf="selectedManufacturer"
+      mat-raised-button
+      color="warn"
+      style="margin: 12px 0 0 auto;"
+      (click)="clearFilter()">
+      Clear Filter
+    </button>
+</div>
+  
+  <!-- Starship Cards -->
+  <mat-card *ngFor="let starship of filterStarships()" style="margin: 8px;">
+    <mat-card-title>{{ starship.name }}</mat-card-title>
+    <mat-card-content>
+      <p><strong>Model:</strong> {{ starship.model }}</p>
+      <p><strong>Manufacturer:</strong> {{ starship.manufacturer }}</p>
+      <p><strong>Cost:</strong> {{ starship.cost_in_credits }} credits</p>
+    </mat-card-content>
+  </mat-card>
+  
